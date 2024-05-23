@@ -8,7 +8,7 @@ export class TestService extends LogService{
 
   constructor(private heroListService:HeroListServiceService) { super()}
   override log(){
-    console.log('test.service.ts')
+    console.log('test.serssssvice.ts')
     console.log(this.heroListService.getHeroes())
   }
 }
