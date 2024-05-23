@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { LogService } from './service/log.service';
 import { TestService } from './service/test.service';
-import { HeroListServiceService } from './service/hero-list-service.service';
 
 @NgModule({
   declarations: [
