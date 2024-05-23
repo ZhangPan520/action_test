@@ -1,0 +1,54 @@
+name: MWeb CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [ develop ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: 
+          - 20
+    permissions:
+      checks: write
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: |
+          ~/.npm
+          **/node_modules
+        key: node-cache-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          node-cache-${{ hashFiles('package-lock.json') }}
+          node-cache-
+    - name: Install modules
+      if: steps.cache-npm.outputs.cache-hit != 'true'
+      run:  npm ci
+
+    - name: Run eslint on changed files
+      uses: tj-actions/eslint-changed-files@v20
+      with:
+        config_path: "vue/.eslintrc.js"
+        file_extensions: |
+          vue/**/*.vue
+          vue/**/*.ts
