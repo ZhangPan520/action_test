@@ -1,0 +1,78 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*",
+    "*.js"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true,
+        "sourceType": "module",
+        "ecmaVersion": 2020
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "./.eslintrc.ng-cli-compat.json",
+        "./.eslintrc.ng-cli-compat--formatting-add-on.json",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "comma-spacing": ["warn", { "before": false, "after": true }],
+        "no-extra-boolean-cast": "off",
+        "@angular-eslint/directive-selector": "off",
+        "@angular-eslint/no-input-rename": "off",
+        "@angular-eslint/no-output-rename": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "prefer-arrow/prefer-arrow-functions": "off",
+        "@typescript-eslint/consistent-type-definitions": "error",
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/prefer-for-of": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "off",
+          {
+            "accessibility": "explicit"
+          }
+        ],
+        "@typescript-eslint/no-use-before-define": "error",
+        "brace-style": [
+          "error",
+          "1tbs"
+        ],
+        "id-blacklist": "off",
+        "id-match": "off",
+        "no-underscore-dangle": "off",
+        "max-len": "off",
+        "no-useless-escape": "off",
+        "@angular-eslint/no-empty-lifecycle-method": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "no-prototype-builtins": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "no-control-regex": "off"
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/template/banana-in-box": "off",
+        "@angular-eslint/template/no-negated-async": "off",
+        "@angular-eslint/template/eqeqeq": "error"
+      }
+    }
+  ]
+}
